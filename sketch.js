@@ -49,11 +49,13 @@ function setup() {
 function draw() {
   // background(255, 150);
   clear(); // 标尺
-
+  strokeWeight(1);
+  stroke(255, 50, 0, 100);
+  line(mouseX, 0, mouseX, height);
   for (var i = 100; i < width - 100; i += Math.floor((width - 200) / 12)) {
     fill(0, 150);
     noStroke();
-    text(Math.ceil(i / width * 12), i + 25, rulerY + 50);
+    text((Math.ceil(i / width * 12) + 10) % 12, i + 25, rulerY + 50);
     stroke(0, 100);
     strokeWeight(3);
     line(i, rulerY, i, rulerY + 20);
