@@ -24,10 +24,12 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
       }
       _this.select = true;
 
-      if (mouseIsPressed && (mouseY < 0.8 * height && mouseY > 0.2 * height)) {
-        _this.move = true;
+      if (mouseIsPressed) {
         setTimeout(function () { window.open(_this.link) }, 1);
-        _this.y = _this.y + (mouseY - _this.y) * 0.05;
+        if ((mouseY < 0.8 * height && mouseY > 0.2 * height)) {
+          _this.move = true;
+          _this.y = _this.y + (mouseY - _this.y) * 0.05;
+        }
       }
     } else {
       _this.select = false;
