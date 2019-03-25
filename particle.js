@@ -28,7 +28,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
         setTimeout(function () { window.open(_this.link) }, 1);
         if ((mouseY < 0.8 * height && mouseY > 0.2 * height)) {
           _this.move = true;
-          _this.y = _this.y + (mouseY - _this.y) * 0.05;
+          // _this.y = _this.y + (mouseY - _this.y) * 0.05;
         }
       }
     } else {
