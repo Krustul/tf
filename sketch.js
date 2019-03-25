@@ -21,26 +21,29 @@ function setup() {
 
   for (var i = 0; i < table.rows.length; i++) {
     var dump = {
-      startYear: table.rows[i].arr[1],
-      endYear: table.rows[i].arr[2],
-      duration: table.rows[i].arr[2] - table.rows[i].arr[1],
+      displayYear: table.rows[i].arr[1],
+      startYear: parseFloat(table.rows[i].arr[1].split("/")[0]) + (table.rows[i].arr[1].split("/")[1] - 1) / 12,
+      endYear: parseFloat(table.rows[i].arr[2].split("/")[0]) + (table.rows[i].arr[2].split("/")[1] - 1) / 12,
+      duration: (parseFloat(table.rows[i].arr[2].split("/")[0]) + (table.rows[i].arr[2].split("/")[1] - 1) / 12) - (parseFloat(table.rows[i].arr[1].split("/")[0]) + (table.rows[i].arr[1].split("/")[1] - 1) / 12),
       text1: table.rows[i].arr[0]
     };
     items.push(dump);
-    startArray.push(table.rows[i].arr[1]);
+    startArray.push(dump.startYear);
   } // calculate time scale
-
+  console.log(startArray)
 
   var scl = Math.max.apply(Math, startArray) - Math.min.apply(Math, startArray);
   var min = Math.min.apply(Math, startArray); // add relative position
-
+  console.log(min);
   items.forEach(function (obj) {
     obj.relaX = (obj.startYear - min) / scl;
     obj.relaDuration = obj.duration / scl;
     obj.round = Math.floor(map(obj.relaX, 0, 1, 0, 12));
-    var dump = new Particle(obj.relaX, rulerY, obj.startYear, obj.endYear, obj.round, obj.text1, obj.relaDuration);
+    var dump = new Particle(obj.displayYear, obj.relaX, rulerY, obj.startYear, obj.endYear, obj.round, obj.text1, obj.relaDuration);
+    console.log(dump);
     particles.push(dump);
   }); // createDouzeDivision
+  console.log(items);
 }
 
 function draw() {

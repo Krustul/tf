@@ -1,18 +1,18 @@
 
 "use strict";
 
-function Particle(relx, starty, syear, eyear, stagex, _text, dur) {
+function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur) {
   var _this = this;
-
   this.larg = dur * (width - 200);
   this.absx = map(relx, 0, 1, 100, width - 100);
   this.absx1 = map(relx + dur, 0, 1, 100, width - 100);
   this.year = syear;
+  this.displayYear = displayYear;
   this.select = false;
   this.endyear = eyear;
   this.x = stagex * width / 12;
   this.y = starty + random(0.5, 1) * this.year / 100;
-  this.txt = _text.split(" ").slice(0, 2).join("\n") + " " + this.year + "~" + this.endyear;
+  this.txt = _text.split(" ").slice(0, 2).join("\n") + " " + this.displayYear;
 
   this.update = function (particles) {
     if (mouseY > _this.y - 20 && mouseY < _this.y + 30 && mouseX > _this.absx & mouseX < _this.absx + 100) {
@@ -39,7 +39,7 @@ function Particle(relx, starty, syear, eyear, stagex, _text, dur) {
     push();
     colorMode(HSL, 255);
     noStroke();
-    var c = color(50 + _this.absx / width * 255, _this.select ? 255 : 150, 100, 50 + _this.larg / width * 200);
+    var c = color(50 + _this.absx / width * 255, _this.select ? 255 : 150, 100, 50 + _this.larg / width * 100);
     fill(c);
     rect(_this.absx, _this.y, _this.larg, _this.select ? 60 : 30, 0, 120, 0, 0);
     textAlign(LEFT, TOP);
