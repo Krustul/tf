@@ -38,7 +38,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
     for (var i = 0; i < particles.length; i++) {
       if (_this.x > particles[i].x - 2 && _this.x < particles[i].x + 1) {
         var distance = abs(_this.y - particles[i].y);
-        if (distance < 100 && !_this.select) {
+        if (distance < 90 && !_this.select && !(_this.y > height - 10 || _this.y < 10)) {
           _this.y = _this.y - (particles[i].y - _this.y) * 5 / (distance + 1);
         } else if (distance > 1000) {
           _this.y = _this.y + (particles[i].y - _this.y) * 0.1;
