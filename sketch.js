@@ -5,7 +5,7 @@ var startArray = [];
 var items = [];
 var particles = [];
 var rulerY;
-
+var state = 0;
 function preload() {
   table = loadTable("1.csv", "csv", "header");
 }
@@ -68,4 +68,10 @@ function draw() {
 
     particles[_i].display(rulerY);
   }
+}
+function touchEnded() {
+  state = 1;
+}
+function touchStarted() {
+  state = 0;
 }

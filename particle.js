@@ -15,7 +15,9 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
   this.move = false;
   this.txt = _text.split(" ").slice(0, 2).join("\n") + " " + this.displayYear;
   this.link = _link;
-
+  function touchEnded() {
+    setTimeout(function () { window.open(_this.link); }, 1);
+  }
   this.update = function (particles) {
     if (mouseY > _this.y - 20 && mouseY < _this.y + 30 && mouseX > _this.absx & mouseX < _this.absx + 100) {
       _this.select = true;
@@ -25,14 +27,16 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
       _this.select = true;
 
       if (mouseIsPressed) {
-        setTimeout(function () { window.open(_this.link) }, 1);
+        touchEnded();
+        // setTimeout(function () { _this.move = true }, 200);
         if ((mouseY < 0.8 * height && mouseY > 0.2 * height)) {
-          _this.move = true;
+          // _this.move = true;
           // _this.y = _this.y + (mouseY - _this.y) * 0.05;
         }
       }
     } else {
       _this.select = false;
+      _this.move = false;
     }
 
     for (var i = 0; i < particles.length; i++) {
