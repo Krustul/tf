@@ -25,7 +25,8 @@ function setup() {
       startYear: parseFloat(table.rows[i].arr[1].split("/")[0]) + (table.rows[i].arr[1].split("/")[1] - 1) / 12,
       endYear: parseFloat(table.rows[i].arr[2].split("/")[0]) + (table.rows[i].arr[2].split("/")[1] - 1) / 12,
       duration: (parseFloat(table.rows[i].arr[2].split("/")[0]) + (table.rows[i].arr[2].split("/")[1] - 1) / 12) - (parseFloat(table.rows[i].arr[1].split("/")[0]) + (table.rows[i].arr[1].split("/")[1] - 1) / 12),
-      text1: table.rows[i].arr[0]
+      text1: table.rows[i].arr[0],
+      link: table.rows[i].arr[3]
     };
     items.push(dump);
     startArray.push(dump.startYear);
@@ -39,11 +40,10 @@ function setup() {
     obj.relaX = (obj.startYear - min) / scl;
     obj.relaDuration = obj.duration / scl;
     obj.round = Math.floor(map(obj.relaX, 0, 1, 0, 12));
-    var dump = new Particle(obj.displayYear, obj.relaX, rulerY, obj.startYear, obj.endYear, obj.round, obj.text1, obj.relaDuration);
-    console.log(dump);
+    var dump = new Particle(obj.displayYear, obj.relaX, rulerY, obj.startYear, obj.endYear, obj.round, obj.text1, obj.relaDuration, obj.link);
+    console.log(obj.link);
     particles.push(dump);
   }); // createDouzeDivision
-  console.log(items);
 }
 
 function draw() {
