@@ -15,11 +15,49 @@
     body {
       padding: 0;
       margin: 0;
-      background-color: rgba(255,255, 255, 0.5);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(100, 100, 220, 0.2)), to(rgba(255, 255, 255, 0.1)));
+    background: -webkit-linear-gradient(rgba(100, 100, 220, 0.2), rgba(255, 255, 255, 0.1));
+    background: -o-linear-gradient(rgba(100, 100, 220, 0.2), rgba(255, 255, 255, 0.1));
+    background: linear-gradient(rgba(100, 100, 220, 0.2), rgba(255, 255, 255, 0.1));
+    -webkit-animation: K 0.1s ease;
+    animation: K 0.1s ease;
     }
-    body:hover{
-      background-color: rgba(255,255, 255, 0.8)
+      body:hover {
+    background: -webkit-radial-gradient(rgba(100, 100, 220, 0.2), rgba(100, 100, 255, 0.1), rgba(255, 100, 100, 0.5));
+    background: -o-radial-gradient(rgba(100, 100, 220, 0.2), rgba(100, 100, 255, 0.1), rgba(255, 100, 100, 0.5));
+    background: radial-gradient(rgba(100, 100, 220, 0.2), rgba(100, 100, 255, 0.1), rgba(255, 100, 100, 0.5));
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 5s ease infinite;
+    animation: Gradient 5s ease infinite;
+  }
+
+  @-webkit-keyframes Gradient {
+    0% {
+      background-position: 0% 50%;
     }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes Gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
     canvas {
       vertical-align: top;
