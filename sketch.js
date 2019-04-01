@@ -60,7 +60,7 @@ function draw() {
     // console.log(months[i]);
     noStroke();
     fill(200, 100, 0);
-    text(months[i], tx + 10, rulerY + 30);
+    text(months[i], tx + 10, rulerY + 15);
     stroke(0, 100);
     strokeWeight(3);
     line(tx, rulerY, tx, rulerY + 20);
