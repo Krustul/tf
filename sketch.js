@@ -6,6 +6,8 @@ var items = [];
 var particles = [];
 var rulerY;
 var state = 0;
+var months = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
+
 function preload() {
   table = loadTable("1.csv", "csv", "header");
 }
@@ -52,13 +54,16 @@ function draw() {
   strokeWeight(1);
   stroke(255, 50, 0, 100);
   line(mouseX, 0, mouseX, height);
-  for (var i = 100; i < width - 100; i += Math.floor((width - 200) / 12)) {
+  for (var i = 0; i < 12; i += 1) {
     fill(0, 150);
+    var tx = 100 + i * (width - 200) / 12;
+    // console.log(months[i]);
     noStroke();
-    text((Math.ceil(i / width * 12) + 10) % 12, i + 25, rulerY + 50);
+    fill(200, 100, 0);
+    text(months[i], tx + 10, rulerY + 30);
     stroke(0, 100);
     strokeWeight(3);
-    line(i, rulerY, i, rulerY + 20);
+    line(tx, rulerY, tx, rulerY + 20);
   }
 
   line(0, rulerY, width, rulerY);
@@ -69,9 +74,11 @@ function draw() {
     particles[_i].display(rulerY);
   }
 }
+
 function touchEnded() {
   state = 1;
 }
+
 function touchStarted() {
   state = 0;
 }
