@@ -2,13 +2,13 @@
 
 function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _link) {
   var colors = [
-    [75, 180, 230],
-    [80, 190, 135],
-    [255, 180, 230],
-    [168, 133, 216]
+    [75, 180, 230, 100],
+    [80, 190, 135, 100],
+    [255, 180, 230, 100],
+    [168, 133, 216, 100]
   ];
   var _this = this;
-  this.colorNo = Math.floor(random(0, 5));
+  this.colorNo = Math.floor(random(0, 4));
   this.larg = dur * (width - 200);
   this.absx = map(relx, 0, 1, 100, width - 100);
   this.absx1 = map(relx + dur, 0, 1, 100, width - 100);
@@ -76,9 +76,10 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
 
   this.display = function (hei) {
     push();
-    colorMode(HSL, 255);
+    // colorMode(HSL, 255);
     noStroke();
-    var c = color(50 + _this.absx / width * 255, _this.select ? 200 : 150, _this.select ? 200 : 100, _this.select ? 230 : 50 + _this.larg / width * 100);
+    // var c = color(50 + _this.absx / width * 255, _this.select ? 200 : 150, _this.select ? 200 : 100, _this.select ? 230 : 50 + _this.larg / width * 100);
+    var c = colors[_this.colorNo];
     fill(c);
     rect(_this.absx, _this.y, _this.larg, _this.select ? 60 : 30, 0, 120, 0, 0);
     textAlign(LEFT, TOP);
