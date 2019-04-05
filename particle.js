@@ -2,10 +2,11 @@
 
 function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _link) {
   var colors = [
-    [75, 180, 230, 100],
+    // [255, 210, 0, 100],
     [80, 190, 135, 100],
     [255, 180, 230, 100],
-    [168, 133, 216, 100]
+    [168, 133, 216, 100],
+    [75, 180, 230, 100]
   ];
   var _this = this;
   this.colorNo = Math.floor(random(0, 4));
@@ -18,14 +19,6 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
   this.endyear = eyear;
   this.x = stagex * width / 12;
   this.y = starty + random(0.5, 1) * this.year / 100;
-  // if (Math.random() > 0.5) {
-  //   this.y = starty + 40 + random(0.5, 1);
-  // } else {
-  //   this.y = starty - 40 - random(0.5, 1);
-  // }
-
-
-  // this.y = height / 2 + random(-50, 50);
   this.move = false;
   this.txt = _text.split(" ").slice(0, 2).join("\n") + " " + this.displayYear;
   this.link = _link;
@@ -45,11 +38,6 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
 
       if (mouseIsPressed) {
         touchEnded();
-        // setTimeout(function () { _this.move = true }, 200);
-        if ((mouseY < 0.8 * height && mouseY > 0.2 * height)) {
-          // _this.move = true;
-          // _this.y = _this.y + (mouseY - _this.y) * 0.05;
-        }
       }
     } else {
       _this.select = false;
@@ -58,16 +46,17 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
 
     for (var i = 0; i < particles.length; i++) {
       if (_this.x > particles[i].x - 2 && _this.x < particles[i].x + 1) {
-        var distance = abs(_this.y - particles[i].y);
-        if (distance < 60 && !_this.select && !(_this.y > height - 10 || _this.y < 10)) {
-          _this.y = _this.y - (particles[i].y - _this.y) * 5 / (distance + 1);
+        var distance = constrain(abs(_this.y - particles[i].y), 2, 10000);
+        // distance / seleted / boudaries
+        if (distance < 80 && !_this.select && !(_this.y > height - 10 || _this.y < 10)) {
+          _this.y = _this.y - (particles[i].y - _this.y) * 5 / distance;
         } else if (distance > 1000) {
           _this.y = _this.y + (particles[i].y - _this.y) * 0.2;
         } else if (abs(_this.y - height / 2) < 30) {
           if (_this.y - height / 2 < 0) {
-            _this.y = _this.y + (height / 2 - 30 - _this.y) * 0.1;
+            _this.y = _this.y + (height / 2 - 60 - _this.y) * 0.5;
           } else {
-            _this.y = _this.y + (height / 2 + 30 - _this.y) * 0.1;
+            _this.y = _this.y + (height / 2 + 60 - _this.y) * 0.5;
           }
         }
       }

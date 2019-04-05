@@ -7,6 +7,13 @@ var particles = [];
 var rulerY;
 var state = 0;
 var months = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
+var colors = [
+  // [255, 210, 0, 100],
+  [80, 190, 135, 100],
+  [255, 180, 230, 100],
+  [168, 133, 216, 100],
+  [75, 180, 230, 100]
+];
 
 function preload() {
   table = loadTable("1.csv", "csv", "header");
@@ -16,7 +23,6 @@ function setup() {
   var canvas1 = createCanvas(windowWidth, windowHeight);
   canvas1.parent("canvas-holder");
   rulerY = height / 2; // find the start time information
-
   console.log(table.rows[0].arr); // find the duration
 
   console.log(table.rows[0].arr[2] - table.rows[0].arr[1]); // create array {startYear, duration, text1}
@@ -73,6 +79,29 @@ function draw() {
 
     particles[_i].display(rulerY);
   }
+  push()
+  translate(-40, 0);
+  noStroke();
+  fill(colors[0]);
+  rect(0.2 * width, 0.9 * height, 15, 15);
+  fill(0);
+  text('Relation Client', 0.2 * width + 30, 0.9 * height + 13);
+  fill(colors[1]);
+  rect(0.4 * width, 0.9 * height, 15, 15);
+  fill(0);
+  text('Digital Client', 0.4 * width + 30, 0.9 * height + 13);
+  fill(colors[2]);
+  rect(0.6 * width, 0.9 * height, 15, 15);
+  fill(0);
+  text('Expérience Client', 0.6 * width + 30, 0.9 * height + 13);
+  fill(colors[3]);
+  rect(0.8 * width, 0.9 * height, 15, 15);
+  fill(0);
+  text('Expérience Salarié', 0.8 * width + 30, 0.9 * height + 13);
+
+  pop();
+
+
 }
 
 function touchEnded() {
