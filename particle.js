@@ -18,7 +18,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
   this.select = false;
   this.endyear = eyear;
   this.x = stagex * width / 12;
-  this.y = starty + random(0.5, 1) * this.year / 100;
+  this.y = starty + random(-0.5, 1) * this.year / 100;
   this.move = false;
   this.txt = _text.split(" ").slice(0, 2).join("\n") + " " + this.displayYear;
   this.link = _link;
@@ -48,7 +48,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
       if (_this.x > particles[i].x - 2 && _this.x < particles[i].x + 1) {
         var distance = constrain(abs(_this.y - particles[i].y), 2, 10000);
         // distance / seleted / boudaries
-        if (distance < 80 && !_this.select && !(_this.y > height - 10 || _this.y < 10)) {
+        if (distance < 60 && !_this.select && !(_this.y > height - 10 || _this.y < 10)) {
           _this.y = _this.y - (particles[i].y - _this.y) * 5 / distance;
         } else if (distance > 1000) {
           _this.y = _this.y + (particles[i].y - _this.y) * 0.2;
