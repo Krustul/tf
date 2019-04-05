@@ -9,10 +9,10 @@ var state = 0;
 var months = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
 var colors = [
   // [255, 210, 0, 100],
-  [80, 190, 135, 100],
-  [255, 180, 230, 100],
-  [168, 133, 216, 100],
-  [75, 180, 230, 100]
+  [80, 190, 135, 255],
+  [255, 180, 230, 255],
+  [168, 133, 216, 255],
+  [75, 180, 230, 255]
 ];
 
 function preload() {
