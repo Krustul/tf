@@ -98,7 +98,6 @@ function draw() {
   rect(0.8 * width, 0.9 * height, 15, 15);
   fill(0);
   text('Expérience Salarié', 0.8 * width + 30, 0.9 * height + 13);
-
   pop();
 
 
