@@ -1,7 +1,14 @@
 "use strict";
 
 function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _link) {
+  var colors = [
+    [75, 180, 230],
+    [80, 190, 135],
+    [255, 180, 230],
+    [168, 133, 216]
+  ];
   var _this = this;
+  this.colorNo = Math.floor(random(0, 5));
   this.larg = dur * (width - 200);
   this.absx = map(relx, 0, 1, 100, width - 100);
   this.absx1 = map(relx + dur, 0, 1, 100, width - 100);
