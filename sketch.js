@@ -7,15 +7,19 @@ var particles = [];
 var rulerY;
 var state = 0;
 var months = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
-var colors = [// [255, 210, 0, 100],
-[80, 190, 135, 255], [255, 180, 230, 255], [168, 133, 216, 255], [75, 180, 230, 255]];
+var colors = [ // [255, 210, 0, 100],
+  [80, 190, 135, 255],
+  [255, 180, 230, 255],
+  [168, 133, 216, 255],
+  [75, 180, 230, 255]
+];
 
 function preload() {
   table = loadTable("1.csv", "csv", "header");
 }
 
 function setup() {
-  randomSeed(13259823195982398); // randomSeed(13259823982398);
+  randomSeed(1358); // randomSeed(13259823982398);
 
   textStyle(BOLD);
   var canvas1 = createCanvas(windowWidth, windowHeight);
@@ -74,7 +78,7 @@ function draw() {
   text("Nos Projets  2019", width / 2, height * 0.05 + 50);
   textSize(15);
   fill(89);
-  text("Click sur un projet pour savoir plus", width / 2, height * 0.05 + 50 + 30);
+  text("Click sur un projet pour en savoir plus", width / 2, height * 0.05 + 50 + 30);
   pop();
   strokeWeight(1);
   stroke(255, 50, 0, 100);

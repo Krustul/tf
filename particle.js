@@ -1,20 +1,25 @@
 "use strict";
 
 function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _link) {
-  var colors = [// FENSE
-  // [181, 232, 247, 255],
-  // [184, 235, 214, 255],
-  // [255, 232, 247, 255],
-  // [217, 194, 240, 255]
-  [75, 180, 230, 255], [80, 190, 135, 255], [255, 180, 230, 255], [168, 133, 216, 255]];
+  var colors = [ // FENSE
+    // [181, 232, 247, 255],
+    // [184, 235, 214, 255],
+    // [255, 232, 247, 255],
+    // [217, 194, 240, 255]
+    [75, 180, 230, 255],
+    [80, 190, 135, 255],
+    [255, 180, 230, 255],
+    [168, 133, 216, 255]
+  ];
 
   var _this = this;
 
   this.colorNo = Math.floor(random(0, 4));
-  this.larg = constrain(dur * (width - 200), 0, 1000);
+  this.larg = constrain(dur * (width - 400), 70, 1000);
   this.largD = 30;
-  this.absx = map(relx, 0, 1, 100, width - 100);
-  this.absx1 = map(relx + dur, 0, 1, 100, width - 100);
+  this.absx = map(relx, 0, 1, 100, width - 300);
+  this.absx1 = _this.absx + _this.larg;
+  // this.absx1 = map(relx + dur, 0, 1, 100, width - 300);
   this.year = syear;
   this.displayYear = displayYear;
   this.select = false;
@@ -23,7 +28,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
   this.y = random() > 0.5 ? starty - 60 : starty + 30; // this.y = starty + random(-0.5, 1) * this.year / 100;
 
   this.move = false;
-  this.txt = _text.split(" ").slice(0, 2).join("\n") + "\n" + this.displayYear;
+  this.txt = _text.split(" ").slice(0, 2).join("\n") + "\n" + this.displayYear.split(".")[0];
   this.link = _link;
 
   function touchEnded() {
@@ -109,7 +114,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
 
     rect(_this.absx, _this.y, _this.largD, _this.select ? 60 : 40);
     textAlign(LEFT, TOP);
-    textSize(_this.select ? 15 : 10);
+    textSize(_this.select ? 12 : 10);
     stroke([100, 100]);
     fill(0, _this.select ? 255 : 180);
 
