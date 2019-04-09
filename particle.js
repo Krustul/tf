@@ -23,7 +23,8 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
   this.select = false;
   this.endyear = eyear;
   this.x = stagex * width / 12;
-  this.y = starty + random(-0.5, 1) * this.year / 100;
+  this.y = random() > 0.5 ? starty - 30 : starty + 30;
+  // this.y = starty + random(-0.5, 1) * this.year / 100;
   // if (random() > 0.5) {
   //   this.y = starty - 60 - random();
 
@@ -59,7 +60,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
       if (_this.x > particles[i].x - 1 && _this.x < particles[i].x + 1) {
         var distance = constrain(abs(_this.y - particles[i].y), 2, 10000);
         // distance / seleted / boudaries
-        if (distance < 60 && !_this.select && !(_this.y > height - 10 || _this.y < 10)) {
+        if (distance < 80 && !_this.select && !(_this.y > height - 10 || _this.y < 10)) {
           _this.y = _this.y - (particles[i].y - _this.y) * 5 / distance;
         } else if (distance > 1000) {
           _this.y = _this.y + (particles[i].y - _this.y) * 0.2;
@@ -84,7 +85,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
     if (!_this.select) {
       _this.largD = constrain(_this.larg, 0, 100);
     } else {
-      _this.largD = _this.largD + (_this.larg - _this.largD) * 0.02;
+      _this.largD = _this.largD + (_this.larg - _this.largD) * 0.1;
     }
     rect(_this.absx, _this.y, _this.largD, _this.select ? 60 : 30, 0, 120, 0, 0);
     textAlign(LEFT, TOP);
