@@ -20,6 +20,8 @@ function preload() {
 }
 
 function setup() {
+  randomSeed(56);
+  textStyle(BOLD);
   var canvas1 = createCanvas(windowWidth, windowHeight);
   canvas1.parent("canvas-holder");
   rulerY = height / 2; // find the start time information
@@ -47,7 +49,7 @@ function setup() {
   items.forEach(function (obj) {
     obj.relaX = (obj.startYear - min) / scl;
     obj.relaDuration = obj.duration / scl;
-    obj.round = Math.floor(map(obj.relaX, 0, 1, 0, 11));
+    obj.round = Math.floor(map(obj.relaX, 0, 1, 0, 12));
     var dump = new Particle(obj.displayYear, obj.relaX, rulerY, obj.startYear, obj.endYear, obj.round, obj.text1, obj.relaDuration, obj.link);
     console.log(obj.link);
     particles.push(dump);
@@ -55,8 +57,18 @@ function setup() {
 }
 
 function draw() {
+  strokeCap(PROJECT);
+  textStyle(BOLD);
+
   // background(255, 150);
   clear(); // 标尺
+  push();
+  textSize(30);
+  noStroke();
+  fill(0);
+  textAlign(CENTER);
+  text("Nos Projets 2019", width / 2, height * 0.05 + 10);
+  pop();
   strokeWeight(1);
   stroke(255, 50, 0, 100);
   line(mouseX, 0, mouseX, height);
@@ -65,9 +77,9 @@ function draw() {
     var tx = 100 + i * (width - 200) / 12;
     // console.log(months[i]);
     noStroke();
-    fill(200, 100, 0);
+    fill(89);
     text(months[i], tx + 10, rulerY + 15);
-    stroke(0, 100);
+    stroke(80);
     strokeWeight(3);
     line(tx, rulerY, tx, rulerY + 20);
   }

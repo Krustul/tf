@@ -41,6 +41,8 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
         particles[m].select = false;
       }
       _this.select = true;
+      // particles.push(_this);
+      particles.push(particles.splice(particles.findIndex(v => v.select == true), 1)[0]);
 
       if (mouseIsPressed) {
         touchEnded();
@@ -94,14 +96,16 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
     push();
     // colorMode(HSL, 255);
     noStroke();
+
     // var c = color(50 + _this.absx / width * 255, _this.select ? 200 : 150, _this.select ? 200 : 100, _this.select ? 230 : 50 + _this.larg / width * 100);
     var c = colors[_this.colorNo];
     fill(c);
     if (!_this.select) {
-      _this.largD = constrain(_this.larg, 0, 100);
+      _this.largD = constrain(_this.larg, 0, 150);
     } else {
-      _this.largD = _this.largD + (_this.larg - _this.largD) * 0.1;
+      _this.largD = _this.largD + (_this.larg - _this.largD) * 0.3;
     }
+
     rect(_this.absx, _this.y, _this.largD, _this.select ? 60 : 40);
     textAlign(LEFT, TOP);
     textSize(_this.select ? 15 : 10);
@@ -112,15 +116,18 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
       push();
       colorMode(RGB);
       stroke(255, 150, 40);
-      line(_this.absx - 1.5, _this.y, _this.absx - 1.5, hei);
-      line(_this.absx1 - 1.5, _this.y + 60, _this.absx1 - 1.5, hei);
+      strokeWeight(3);
+      line(_this.absx - 1.5, _this.y > height / 2 ? _this.y + 60 : _this.y, _this.absx - 1.5, hei);
+      line(_this.absx1 - 1.5, _this.y > height / 2 ? _this.y + 60 : _this.y, _this.absx1 - 1.5, hei);
       strokeWeight(10);
       line(_this.absx - 1.5, hei, _this.absx1 - 1.5, hei);
       pop();
     }
 
     noStroke();
-    text(_this.txt, _this.absx, _this.y);
+    // stroke(0);
+    // strokeWeight(0.5);
+    text(_this.txt, _this.absx + 5, _this.y + 2);
     pop();
   };
 }
