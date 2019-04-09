@@ -70,10 +70,6 @@ function draw() {
   clear(); // 标尺
 
   push();
-  stroke(0);
-  strokeWeight(1);
-  fill(0, 0);
-  rect(0, -1, width + 1, height - 1);
   textSize(30);
   noStroke();
   fill(0);
