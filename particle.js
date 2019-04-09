@@ -1,18 +1,15 @@
 "use strict";
 
 function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _link) {
-  var colors = [
-    // FENSE
-    // [181, 232, 247, 255],
-    // [184, 235, 214, 255],
-    // [255, 232, 247, 255],
-    // [217, 194, 240, 255]
-    [75, 180, 230, 255],
-    [80, 190, 135, 255],
-    [255, 180, 230, 255],
-    [168, 133, 216, 255]
-  ];
+  var colors = [// FENSE
+  // [181, 232, 247, 255],
+  // [184, 235, 214, 255],
+  // [255, 232, 247, 255],
+  // [217, 194, 240, 255]
+  [75, 180, 230, 255], [80, 190, 135, 255], [255, 180, 230, 255], [168, 133, 216, 255]];
+
   var _this = this;
+
   this.colorNo = Math.floor(random(0, 4));
   this.larg = constrain(dur * (width - 200), 0, 1000);
   this.largD = 30;
@@ -23,8 +20,8 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
   this.select = false;
   this.endyear = eyear;
   this.x = stagex * width / 12;
-  this.y = random() > 0.5 ? starty - 60 : starty + 30;
-  // this.y = starty + random(-0.5, 1) * this.year / 100;
+  this.y = random() > 0.5 ? starty - 60 : starty + 30; // this.y = starty + random(-0.5, 1) * this.year / 100;
+
   this.move = false;
   this.txt = _text.split(" ").slice(0, 2).join("\n") + "\n" + this.displayYear;
   this.link = _link;
@@ -34,15 +31,20 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
       window.open(_this.link);
     }, 1);
   }
+
   this.update = function (particles) {
     if (mouseY > _this.y - 20 && mouseY < _this.y + 30 && mouseX > _this.absx & mouseX < _this.absx + 100) {
       _this.select = true;
+
       for (var m = 0; m < particles.length; m++) {
         particles[m].select = false;
       }
-      _this.select = true;
-      // particles.push(_this);
-      particles.push(particles.splice(particles.findIndex(v => v.select == true), 1)[0]);
+
+      _this.select = true; // particles.push(_this);
+
+      particles.push(particles.splice(particles.findIndex(function (v) {
+        return v.select == true;
+      }), 1)[0]);
 
       if (mouseIsPressed) {
         touchEnded();
@@ -50,9 +52,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
     } else {
       _this.select = false;
       _this.move = false;
-    }
-
-    // for (var i = 0; i < particles.length; i++) {
+    } // for (var i = 0; i < particles.length; i++) {
     //   if (_this.x === particles[i].x && _this !== particles[i]) {
     //     var distance = constrain(abs(_this.y - particles[i].y), 1, 10000);
     //     // distance / seleted / boudaries
@@ -69,38 +69,38 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
     //     }
     //   }
     // }
-    for (var i = 0; i < particles.length; i++) {
 
+
+    for (var i = 0; i < particles.length; i++) {
       if (_this.x === particles[i].x && _this !== particles[i]) {
         var distance = constrain(abs(_this.y - particles[i].y), 0, 10000);
-        distance === 0 ? (_this.y < height / 2 ? _this.y -= 2 : _this.y += 2) : "";
-        if ((_this.y !== height / 2 - 60) && _this.y < height / 2) {
+        distance === 0 ? _this.y < height / 2 ? _this.y -= 2 : _this.y += 2 : "";
+
+        if (_this.y !== height / 2 - 60 && _this.y < height / 2) {
           if (distance < 60 && !(_this.y > height - 10 || _this.y < 10)) {
             if (particles[i].y > _this.y + 0.1) {
               _this.y = _this.y - (particles[i].y - _this.y) * 0.2;
             }
           }
-        } else if ((_this.y !== height / 2 + 30) && _this.y > height / 2) {
-          if ((distance < 60) && !(_this.y > height - 10 || _this.y < 10)) {
+        } else if (_this.y !== height / 2 + 30 && _this.y > height / 2) {
+          if (distance < 60 && !(_this.y > height - 10 || _this.y < 10)) {
             if (particles[i].y < _this.y - 0.1) {
               _this.y = _this.y - (particles[i].y - _this.y) * 0.2;
             }
           }
         }
-
-
       }
     }
   };
 
   this.display = function (hei) {
-    push();
-    // colorMode(HSL, 255);
-    noStroke();
+    push(); // colorMode(HSL, 255);
 
-    // var c = color(50 + _this.absx / width * 255, _this.select ? 200 : 150, _this.select ? 200 : 100, _this.select ? 230 : 50 + _this.larg / width * 100);
+    noStroke(); // var c = color(50 + _this.absx / width * 255, _this.select ? 200 : 150, _this.select ? 200 : 100, _this.select ? 230 : 50 + _this.larg / width * 100);
+
     var c = colors[_this.colorNo];
     fill(c);
+
     if (!_this.select) {
       _this.largD = constrain(_this.larg, 0, 150);
     } else {
@@ -125,9 +125,9 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
       pop();
     }
 
-    noStroke();
-    // stroke(0);
+    noStroke(); // stroke(0);
     // strokeWeight(0.5);
+
     text(_this.txt, _this.absx + 5, _this.y + 2);
     pop();
   };
