@@ -20,7 +20,9 @@ function preload() {
 }
 
 function setup() {
-  randomSeed(56);
+  randomSeed(13259823195982398);
+  // randomSeed(13259823982398);
+
   textStyle(BOLD);
   var canvas1 = createCanvas(windowWidth, windowHeight);
   canvas1.parent("canvas-holder");
@@ -54,8 +56,10 @@ function setup() {
     console.log(obj.link);
     particles.push(dump);
   }); // createDouzeDivision
-  particles.push(particles.splice(particles.findIndex(v => v.larg < 50), 1)[0]);
-
+  // particles.push(particles.splice(particles.findIndex(v => v.larg < 100), 1)[0]);
+  particles.sort(function (a, b) {
+    return b.larg - a.larg
+  })
 }
 
 function draw() {
@@ -69,7 +73,7 @@ function draw() {
   noStroke();
   fill(0);
   textAlign(CENTER);
-  text("Nos Projets 2019", width / 2, height * 0.05 + 10);
+  text("Nos Projets 2019", width / 2, height * 0.05 + 50);
   pop();
   strokeWeight(1);
   stroke(255, 50, 0, 100);
