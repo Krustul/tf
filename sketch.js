@@ -68,12 +68,20 @@ function draw() {
 
   // background(255, 150);
   clear(); // 标尺
+
   push();
+  stroke(0);
+  strokeWeight(1);
+  fill(0, 0);
+  rect(0, -1, width + 1, height - 1);
   textSize(30);
   noStroke();
   fill(0);
   textAlign(CENTER);
-  text("Nos Projets 2019", width / 2, height * 0.05 + 50);
+  text("Nos Projets  2019", width / 2, height * 0.05 + 50);
+  textSize(15);
+  fill(89)
+  text("Click sur un projet pour savoir plus", width / 2, height * 0.05 + 50 + 30);
   pop();
   strokeWeight(1);
   stroke(255, 50, 0, 100);
