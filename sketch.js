@@ -47,7 +47,7 @@ function setup() {
   items.forEach(function (obj) {
     obj.relaX = (obj.startYear - min) / scl;
     obj.relaDuration = obj.duration / scl;
-    obj.round = Math.floor(map(obj.relaX, 0, 1, 0, 12));
+    obj.round = Math.floor(map(obj.relaX, 0, 1, 0, 11));
     var dump = new Particle(obj.displayYear, obj.relaX, rulerY, obj.startYear, obj.endYear, obj.round, obj.text1, obj.relaDuration, obj.link);
     console.log(obj.link);
     particles.push(dump);

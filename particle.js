@@ -23,16 +23,10 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
   this.select = false;
   this.endyear = eyear;
   this.x = stagex * width / 12;
-  this.y = random() > 0.5 ? starty - 30 : starty + 30;
+  this.y = random() > 0.5 ? starty - 60 : starty + 30;
   // this.y = starty + random(-0.5, 1) * this.year / 100;
-  // if (random() > 0.5) {
-  //   this.y = starty - 60 - random();
-
-  // } else {
-  //   this.y = starty + 30 + random();
-  // }
   this.move = false;
-  this.txt = _text.split(" ").slice(0, 2).join("\n") + " " + this.displayYear;
+  this.txt = _text.split(" ").slice(0, 2).join("\n") + "\n" + this.displayYear;
   this.link = _link;
 
   function touchEnded() {
@@ -56,21 +50,42 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
       _this.move = false;
     }
 
+    // for (var i = 0; i < particles.length; i++) {
+    //   if (_this.x === particles[i].x && _this !== particles[i]) {
+    //     var distance = constrain(abs(_this.y - particles[i].y), 1, 10000);
+    //     // distance / seleted / boudaries
+    //     if (distance < 60 && !_this.select && !(_this.y > height - 10 || _this.y < 10)) {
+    //       _this.y = _this.y - (particles[i].y - _this.y) * 5 / distance;
+    //     } else if (distance > 1000) {
+    //       _this.y = _this.y + (particles[i].y - _this.y) * 0.2;
+    //     } else if (abs(_this.y - (height / 2 - 20)) < 40) {
+    //       if (_this.y - height / 2 < 0) {
+    //         _this.y = _this.y + (height / 2 - 60 - _this.y) * 0.5;
+    //       } else {
+    //         _this.y = _this.y + (height / 2 + 60 - _this.y) * 0.5;
+    //       }
+    //     }
+    //   }
+    // }
     for (var i = 0; i < particles.length; i++) {
-      if (_this.x > particles[i].x - 1 && _this.x < particles[i].x + 1) {
-        var distance = constrain(abs(_this.y - particles[i].y), 2, 10000);
-        // distance / seleted / boudaries
-        if (distance < 80 && !_this.select && !(_this.y > height - 10 || _this.y < 10)) {
-          _this.y = _this.y - (particles[i].y - _this.y) * 5 / distance;
-        } else if (distance > 1000) {
-          _this.y = _this.y + (particles[i].y - _this.y) * 0.2;
-        } else if (abs(_this.y - (height / 2 - 20)) < 40) {
-          if (_this.y - height / 2 < 0) {
-            _this.y = _this.y + (height / 2 - 60 - _this.y) * 0.5;
-          } else {
-            _this.y = _this.y + (height / 2 + 60 - _this.y) * 0.5;
+      if (_this.x === particles[i].x && _this !== particles[i]) {
+        var distance = constrain(abs(_this.y - particles[i].y), 0, 10000);
+        distance === 0 ? (_this.y < height / 2 ? _this.y -= 2 : _this.y += 2) : "";
+        if ((_this.y !== height / 2 - 60) && _this.y < height / 2) {
+          if (distance < 60 && !(_this.y > height - 10 || _this.y < 10)) {
+            if (particles[i].y > _this.y + 0.1) {
+              _this.y = _this.y - (particles[i].y - _this.y) * 0.2;
+            }
+          }
+        } else if ((_this.y !== height / 2 + 30) && _this.y > height / 2) {
+          if ((distance < 60) && !(_this.y > height - 10 || _this.y < 10)) {
+            if (particles[i].y < _this.y - 0.1) {
+              _this.y = _this.y - (particles[i].y - _this.y) * 0.2;
+            }
           }
         }
+
+
       }
     }
   };
@@ -87,7 +102,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
     } else {
       _this.largD = _this.largD + (_this.larg - _this.largD) * 0.1;
     }
-    rect(_this.absx, _this.y, _this.largD, _this.select ? 60 : 30, 0, 120, 0, 0);
+    rect(_this.absx, _this.y, _this.largD, _this.select ? 60 : 40);
     textAlign(LEFT, TOP);
     textSize(_this.select ? 15 : 10);
     stroke([100, 100]);
