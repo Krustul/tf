@@ -70,6 +70,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
     //   }
     // }
     for (var i = 0; i < particles.length; i++) {
+
       if (_this.x === particles[i].x && _this !== particles[i]) {
         var distance = constrain(abs(_this.y - particles[i].y), 0, 10000);
         distance === 0 ? (_this.y < height / 2 ? _this.y -= 2 : _this.y += 2) : "";

@@ -54,6 +54,8 @@ function setup() {
     console.log(obj.link);
     particles.push(dump);
   }); // createDouzeDivision
+  particles.push(particles.splice(particles.findIndex(v => v.larg < 50), 1)[0]);
+
 }
 
 function draw() {
