@@ -47,9 +47,10 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
 
       _this.select = true; // particles.push(_this);
 
-      particles.push(particles.splice(particles.findIndex(function (v) {
-        return v.select == true;
-      }), 1)[0]);
+   //   particles.push(particles.splice(particles.findIndex(function (v) {
+   //      return v.select == true;
+    //   }), 1)[0]);
+
 
       if (mouseIsPressed) {
         touchEnded();
