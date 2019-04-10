@@ -20,7 +20,6 @@ function preload() {
 
 function setup() {
   randomSeed(1358); // randomSeed(13259823982398);
-
   textStyle(BOLD);
   var canvas1 = createCanvas(windowWidth, windowHeight);
   canvas1.parent("canvas-holder");

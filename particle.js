@@ -47,9 +47,9 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
 
       _this.select = true; // particles.push(_this);
 
-   //   particles.push(particles.splice(particles.findIndex(function (v) {
-   //      return v.select == true;
-    //   }), 1)[0]);
+      particles.push(particles.splice(particles.findIndex(function (v) {
+        return v.select == true;
+      }), 1)[0]);
 
 
       if (mouseIsPressed) {
@@ -58,24 +58,7 @@ function Particle(displayYear, relx, starty, syear, eyear, stagex, _text, dur, _
     } else {
       _this.select = false;
       _this.move = false;
-    } // for (var i = 0; i < particles.length; i++) {
-    //   if (_this.x === particles[i].x && _this !== particles[i]) {
-    //     var distance = constrain(abs(_this.y - particles[i].y), 1, 10000);
-    //     // distance / seleted / boudaries
-    //     if (distance < 60 && !_this.select && !(_this.y > height - 10 || _this.y < 10)) {
-    //       _this.y = _this.y - (particles[i].y - _this.y) * 5 / distance;
-    //     } else if (distance > 1000) {
-    //       _this.y = _this.y + (particles[i].y - _this.y) * 0.2;
-    //     } else if (abs(_this.y - (height / 2 - 20)) < 40) {
-    //       if (_this.y - height / 2 < 0) {
-    //         _this.y = _this.y + (height / 2 - 60 - _this.y) * 0.5;
-    //       } else {
-    //         _this.y = _this.y + (height / 2 + 60 - _this.y) * 0.5;
-    //       }
-    //     }
-    //   }
-    // }
-
+    }
 
     for (var i = 0; i < particles.length; i++) {
       if (_this.x === particles[i].x && _this !== particles[i]) {
